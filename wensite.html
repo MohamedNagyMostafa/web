@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="profile_pic.jpeg" type="image/jpeg">
+    <link rel="apple-touch-icon" href="profile_pic.jpeg">
+    <title>Mohamed Nagy Mostafa</title>
+    <style>
+         * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #ffffff;
+        }
+
+        /* Header Section */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 2.5rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            border-radius: 0 0 1rem 1rem;
+        }
+
+        .profile-img {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #2c3e50;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 280px;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 0;
+            border-top: 2px solid #eee;
+            border-bottom: 2px solid #eee;
+            text-align: center;
+            border-radius: 0 0 1rem 1rem;
+        }
+
+        nav a {
+            margin: 0 1.5rem;
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+        }
+
+        nav a:hover {
+            background: #2c3e50;
+            color: white;
+        }
+
+        nav a.active {
+            background: #2c3e50;
+            color: white !important;
+        }
+
+        /* Content area */
+        .content-container {
+            margin-top: 380px;
+            padding: 2rem;
+        }
+
+        /* Content sections */
+        .content-section {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Common section styling */
+        .section {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: #ffffff;
+            border-radius: 1rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        h1 { font-size: 2.5rem; color: #2c3e50; margin-bottom: 0.5rem; }
+        h2 { font-size: 2rem; color: #2c3e50; margin-bottom: 1.5rem; }
+        h3 { font-size: 1.3rem; margin-bottom: 0.8rem; }
+
+        /* Demo/Project cards */
+        .demo-grid, .talks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .demo-card, .talk-card {
+            background: white;
+            border-radius: 0.8rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease;
+        }
+
+        .demo-card:hover, .talk-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .demo-content, .talk-content {
+            padding: 1.5rem;
+        }
+
+        .demo-video, .talk-video {
+            width: 100%;
+            height: 400px;
+            border: none;
+            background: #1a1a1a;
+        }
+
+        .demo-links, .talk-links {
+            margin-top: 1rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .demo-link, .talk-link {
+            padding: 0.5rem 1rem;
+            background: #2c3e50;
+            color: white !important;
+            border-radius: 0.4rem;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background 0.2s ease;
+        }
+
+        .demo-link:hover, .talk-link:hover {
+            background: #3498db;
+        }
+
+        /* Publication cards */
+        .pub-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease;
+        }
+
+        .pub-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .pub-header h3 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .pub-meta {
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #4a5568;
+        }
+
+        .pub-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .pub-link {
+            padding: 0.5rem 1rem;
+            background: #2c3e50;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: background 0.2s ease;
+        }
+
+        .pub-link:hover {
+            background: #3498db;
+        }
+
+        .pub-abstract {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            margin-top: 1rem;
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        .pub-abstract.expanded {
+            max-height: 500px;
+        }
+
+        .pub-details-btn {
+            background: none;
+            border: none;
+            color: #3498db;
+            cursor: pointer;
+            padding: 0.5rem;
+            font-weight: 600;
+        }
+
+        /* Hobbies section */
+        .hobbies-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .hobby-card {
+            background: white;
+            border-radius: 0.8rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease;
+        }
+
+        .hobby-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .hobby-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        .institution-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.institution-card {
+    background: white;
+    border-radius: 0.8rem;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease;
+}
+
+.institution-card:hover {
+    transform: translateY(-5px);
+}
+
+.institution-card img {
+    height: 60px;
+    width: auto;
+    margin-bottom: 1rem;
+}
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .header {
+                position: static;
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            nav { position: static; }
+            .content-container { margin-top: 0; }
+            .profile-img { margin: 0 auto; }
+            nav a { display: block; margin: 0.5rem 0; }
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.6rem; }
+        }
+
+    </style>
+</head>
+<body>
+    <header class="header">
+        <img src="profile_pic.jpeg" alt="Mohamed Nagy Mostafa" class="profile-img">
+        <div>
+            <h1>Mohamed Nagy Mostafa</h1>
+            <p style="font-size: 1.1rem; color: #4a5568; margin-bottom: 1rem;">
+                PhD Candidate in Electrical & Computer Engineering at Khalifa University<br>
+                Research Focus: Multi-Object Tracking | State Estimation & Uncertainty | Robotics Perception
+            </p>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <a href="https://www.linkedin.com/in/mohamed-nagy-7a2a25b9/" class="demo-link" target="_blank">
+                    👨 LinkedIn
+                </a>
+                <a href="https://scholar.google.com/citations?user=IXmK0cwAAAAJ&hl=en" class="demo-link" target="_blank">
+                    🇬 Google Scholar
+                </a>
+                <a href="https://github.com/MohamedNagyMostafa" class="demo-link" target="_blank">
+                    💻 GitHub
+                </a>
+                <a href="mailto:mohamed.nagy@ieee.org" class="demo-link">
+                    ✉️ Contact
+                </a>
+            </div>
+        </div>
+    </header>
+
+   <nav>
+        <a href="#demos" class="nav-link active">Demos</a>
+        <a href="#affiliations" class="nav-link">Affiliations</a>
+        <a href="#publications" class="nav-link">Publications</a>
+        <a href="#talks" class="nav-link">Talks</a>
+        <a href="#hobbies" class="nav-link">Hobbies</a>
+    </nav>
+
+    <div class="content-container">
+        <!-- Demos Section -->
+        <section id="demos" class="content-section active">
+            <div class="section">
+        <h2>🚀 Project Demonstrations</h2>
+        <div class="demo-grid">
+             <div class="demo-card">
+                <iframe class="demo-video" src="https://www.youtube.com/embed/rrMHbu_VST0"
+                    title="RobMOT Robust MOT by Observational Noise and State Estimation Drift Mitigation on LiDAR PointCloud" allowfullscreen></iframe>
+                <div class="demo-content">
+                    <h3>RobMOT:Robust Multi-object Tracking by Observational Noise and State Estimation Drift Mitigation on LiDAR PointCloud</h3>
+                    <p>This work addresses limitations in 3D tracking-by-detection methods, focusing on legitimate trajectory identification and reducing state estimation drift in Kalman filters. Traditional threshold-based filtering struggles with distant and occluded objects, leading to false positives. We propose a novel track validity mechanism and multi-stage observational gating process that reduces ghost tracks and enhances tracking performance. This work effectively tracks distant objects and prolonged occlusions. It operates at 3221 FPS on a single CPU for real-time tracking.</p>
+                    <div class="demo-links">
+                        <a href="https://arxiv.org/abs/2405.11536" class="demo-link" target="_blank">
+                             📝 Paper
+                        </a>
+                        <a href="https://www.linkedin.com/posts/mohamed-nagy-7a2a25b9_objecttracking-research-occlusion-activity-7256928740079779840-FzrF?utm_source=share&utm_medium=member_desktop&rcm=ACoAABk_ECoBWUSDdomYU5VWcMldLH4pCMdPETI"
+                           class="demo-link" target="_blank">
+                            📝 Post
+                        </a>
+                        <a href="https://github.com/MohamedNagyMostafa/RobMOT"
+                           class="demo-link" target="_blank">
+                            💻 Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="demo-card">
+                <iframe class="demo-video" src="https://www.youtube.com/embed/Gvggzb4dfSw" 
+                    title="3D Multi-Object Tracking" allowfullscreen></iframe>
+                <div class="demo-content">
+                    <h3>Autonomous Robot Navigation in Rough Terrain</h3>
+                    <p>I participated in a robotics summer school at ETH Zurich, where I collaborated with my team to develop a full-stack robot designed for a Segway platform. Our technological stack encompassed perception, mapping, localization, state estimation, navigation, and trajectory optimization. We focused on a ground robot and successfully enabled it to navigate within a designated area, identify objects on the map, thoroughly explore the surroundings, and safely depart from the location.</p>
+                    <div class="demo-links">
+                        <a href="https://www.linkedin.com/posts/mohamed-nagy-7a2a25b9_duringeth-z%C3%BCrichsummer-school-2023-a-ros-activity-7101527850154901504-WBTa?utm_source=share&utm_medium=member_desktop&rcm=ACoAABk_ECoBWUSDdomYU5VWcMldLH4pCMdPETI" class="demo-link" target="_blank">
+                             📰 Post
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="demo-card">
+                <iframe class="demo-video" src="https://www.youtube.com/embed/bx5OtXj64OI"
+                    title="Visual Motion Multi-Object Tracking Based on Kalman Filter Using Event Camera" allowfullscreen></iframe>
+                <div class="demo-content">
+                    <h3>Visual Motion Multi-Object Tracking Based on Kalman Filter Using Event Camera</h3>
+<p>The primary objective is to monitor multiple targets based on their visual motion captured through an event camera. The Kalman filter has been reformulated and adapted for visual motion estimation. Based on the current observed motion of an object, the proposed Kalman filter predicts the next visual motion state for that object. The results demonstrated its effectiveness for nearby objects, but its performance was less satisfactory with objects at a distance.</p>                </div>
+            </div>
+
+            <div class="demo-card">
+                <iframe class="demo-video" src="https://www.youtube.com/embed/trD3jiZGOAQ" 
+                    title="Odor Diffusion Simulation and Mapping Using Aerial Drone" allowfullscreen></iframe>
+                <div class="demo-content">
+                    <h3>Odor Diffusion Simulation and Mapping Using Aerial Drone</h3>
+                    <p>The goal of this project is to investigate outdoor odor diffusion. Initially, a particle shooter is developed to simulate odor dispersion in the Gazebo environment, with the scattering of particles governed by a predefined diffusion model. Additionally, a custom air monitoring sensor is integrated into an AutoPilot drone to measure particle concentration per cubic meter. Ultimately, the drone employs advanced algorithms to detect sources of odor diffusion within the environment. The implementation is carried out in C++.</p>
+                    <div class="demo-links">
+                        <a href="https://github.com/MohamedNagyMostafa/aerial-odor-diffusion-simulation-slam" class="demo-link" target="_blank">
+                            💻 Code
+                        </a>
+                </div>
+            </div>
+            </div>
+
+            <div class="demo-card">
+                <iframe class="demo-video" src="https://www.youtube.com/embed/CLDxqTojz6o" 
+                    title="DFR-FastMOT" allowfullscreen></iframe>
+                <div class="demo-content">
+                    <h3>DFR-FastMOT: Multi-Object Association and Tracking Using Sensor Fusion for Autonomous Vehicles</h3>
+                    <p>This is my thesis project focused on multi-object tracking for self-driving cars. The project employs a combination of camera, LiDAR, and IMU sensors to continuously track objects within 2D camera frames and a 3D LiDAR point cloud. The trajectories of the objects are derived using a Kalman Filter, assuming constant acceleration. This project has been developed from the ground up (End-to-End) using C/C++, with a portion submitted to ICRA 2023 under the title DFR-FastMOT framework. This framework offers a non-learning, online multi-object tracking solution that integrates camera and LiDAR sensors, demonstrating superior performance compared to recent state-of-the-art methods (both learning and non-learning). Notably, it can effectively track objects even during prolonged occlusions or detection distortion, and its computational efficiency is seven times greater than that of recently published frameworks.</p>
+                    <div class="demo-links">
+                    <a href="https://ieeexplore.ieee.org/document/10160328" class="demo-link" target="_blank">
+                             📝 Paper
+                        </a>
+                         <a href="https://www.linkedin.com/posts/mohamed-nagy-7a2a25b9_autonomousvehicles-sota-autonomouscars-activity-7000823626237153280-hLIY?utm_source=share&utm_medium=member_desktop&rcm=ACoAABk_ECoBWUSDdomYU5VWcMldLH4pCMdPETI" class="demo-link" target="_blank">
+                             📰 Post
+                        </a>
+                        <a href="https://github.com/MohamedNagyMostafa/DFR-FastMOT" 
+                           class="demo-link" target="_blank">
+                            💻 Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="demo-card">
+                <iframe class="demo-video" src="https://www.youtube.com/embed/NA5cnxJ4rYw" 
+                    title="Roughness Estimation" allowfullscreen></iframe>
+                <div class="demo-content">
+                    <h3>3D Map Roughness Estimation using LiDAR for Mobile Robots</h3>
+                    <p>In this project, I developed a 3D adjustable grid map for roughness estimation utilizing LiDAR point clouds. The grid consists of small rectangles surrounding the robot, with each rectangle calculating a roughness score based on the point cloud it contains. To accomplish this, I employed the RANSAC algorithm along with the Euclidean distance property. The implementation was done using C++.</p>
+                    <div class="demo-links">
+                        <a href="https://www.linkedin.com/posts/mohamed-nagy-7a2a25b9_autonomouscars-tracking-detection-activity-7002354214672711680-3tCI?utm_source=share&utm_medium=member_desktop&rcm=ACoAABk_ECoBWUSDdomYU5VWcMldLH4pCMdPETI" 
+                           class="demo-link" target="_blank">
+                            📝 Post
+                        </a>
+                        <a href="https://github.com/MohamedNagyMostafa/Roughness" 
+                           class="demo-link" target="_blank">
+                            💻 Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+             <div class="demo-card">
+                <iframe class="demo-video" src="https://www.youtube.com/embed/ZE6P_TZvwTY"
+                    title="3D Drivable Surface Detection and 2D Localization Map Using stereo camera" allowfullscreen></iframe>
+                <div class="demo-content">
+                    <h3>3D Drivable Surface Detection and 2D Localization Map Using stereo camera</h3>
+                    <p>In this project, I employed the Modified UNET model to extract drivable surfaces through semantic segmentation, alongside the RANSAC algorithm to map these surfaces into 3D space using a stereo camera (Zed2) depth map. Additionally, the results of the semantic segmentation were used to identify obstacles on the surface. Finally, I leveraged the camera's pose information to create a 2D map of the mobile robot's trajectory and accurately localize the robot within that map.</p>
+                    <div class="demo-links">
+                        <a href="https://www.linkedin.com/posts/mohamed-nagy-7a2a25b9_segmentation-computervision-perception-activity-6863195535113764864-yJe_?utm_source=share&utm_medium=member_desktop&rcm=ACoAABk_ECoBWUSDdomYU5VWcMldLH4pCMdPETI"
+                           class="demo-link" target="_blank">
+                            📝 Post
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="demo-card">
+                <iframe class="demo-video" src="https://www.youtube.com/embed/rs_arrF417I"
+                    title="Semantic Segmentation|Modified U-Net Model" allowfullscreen></iframe>
+                <div class="demo-content">
+                    <h3>Semantic Segmentation|Modified U-Net Model</h3>
+                    <p>This research project explores the limitations of deep learning architectures in the context of semantic segmentation. I begin by implementing a U-Net model architecture from the ground up and subsequently enhance the architecture in response to the identified performance weaknesses on the Mapillary Vistas dataset. The final architecture incorporates a downsampling and upsampling hierarchy derived from the U-Net model, skip connections from DenseNet, and parallel convolutional layers featuring kernel sizes inspired by the InceptionV3 model.</p>
+                    <div class="demo-links">
+                        <a href="https://www.linkedin.com/feed/update/urn:li:activity:6868635094811205632/"
+                           class="demo-link" target="_blank">
+                            📝 Post
+                        </a>
+                        <a href="https://github.com/MohamedNagyMostafa/
+RoadSceneUnderstanding-ModifiedUNet"
+                           class="demo-link" target="_blank">
+                            💻 Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+            </div>
+    </section>
+
+        <section id="publications" class="content-section section">
+            <div class="section">
+    <h2>Publications</h2>
+
+            <div class="pub-card">
+        <div class="pub-header">
+            <h3>Towards Accurate State Estimation: Kalman Filter Incorporating Motion Dynamics for 3D Multi-Object Tracking (2025)</h3>
+        </div>
+        <div class="pub-meta">
+            <span class="authors">Mohamed Nagy, Naoufel Werghi, Bilal Hassan, Jorge Dias, Majid Khonji</span>
+            <span class="venue"> | Pre-print</span>
+        </div>
+        <div class="pub-links">
+            <a href="https://arxiv.org/abs/2505.07254" class="pub-link" target="_blank">📄 Paper</a>
+            <button class="pub-details-btn" onclick="toggleAbstract(this)">▼ Abstract</button>
+        </div>
+        <div class="pub-abstract">
+            <p>This work addresses the critical lack of precision in state estimation in the Kalman filter for 3D multi-object tracking (MOT) and the ongoing challenge of selecting the appropriate motion model. Existing literature commonly relies on constant motion models for estimating the states of objects, neglecting the complex motion dynamics unique to each object. Consequently, trajectory division and imprecise object localization arise, especially under occlusion conditions. The core of these challenges lies in the limitations of the current Kalman filter formulation, which fails to account for the variability of motion dynamics as objects navigate their environments. This work introduces a novel formulation of the Kalman filter that incorporates motion dynamics, allowing the motion model to adaptively adjust according to changes in the object's movement. The proposed Kalman filter substantially improves state estimation, localization, and trajectory prediction compared to the traditional Kalman filter. This is reflected in tracking performance that surpasses recent benchmarks on the KITTI and Waymo Open Datasets, with margins of 0.56\% and 0.81\% in higher order tracking accuracy (HOTA) and multi-object tracking accuracy (MOTA), respectively. Furthermore, the proposed Kalman filter consistently outperforms the baseline across various detectors. Additionally, it shows an enhanced capability in managing long occlusions compared to the baseline Kalman filter, achieving margins of 1.22\% in higher order tracking accuracy (HOTA) and 1.55\% in multi-object tracking accuracy (MOTA) on the KITTI dataset. The formulation's efficiency is evident, with an additional processing time of only approximately 0.078 ms per frame, ensuring its applicability in real-time applications.</p>
+        </div>
+    </div>
+
+    <!-- 2024 Publications -->
+    <div class="pub-card">
+        <div class="pub-header">
+            <h3>RobMOT: Robust 3D Multi-Object Tracking by Observational Noise and State Estimation Drift Mitigation on LiDAR PointCloud (2024)</h3>
+        </div>
+        <div class="pub-meta">
+            <span class="authors">Mohamed Nagy, Naoufel Werghi, Bilal Hassan, Jorge Dias, Majid Khonji</span>
+            <span class="venue"> | IEEE Transactions on Intelligent Transportation Systems (Accepted)</span>
+        </div>
+        <div class="pub-links">
+            <a href="https://arxiv.org/abs/2405.11536" class="pub-link" target="_blank">📄 Paper</a>
+            <a href="https://youtu.be/rrMHbu_VST0" class="pub-link" target="_blank">🎥 Video</a>
+            <button class="pub-details-btn" onclick="toggleAbstract(this)">▼ Abstract</button>
+        </div>
+        <div class="pub-abstract">
+            <p>This paper addresses limitations in 3D tracking-by-detection methods, particularly in identifying legitimate trajectories and reducing state estimation drift in Kalman filters. Existing methods often use threshold-based filtering for detection scores, which can fail for distant and occluded objects, leading to false positives. To tackle this, we propose a novel track validity mechanism and multi-stage observational gating process, significantly reducing ghost tracks and enhancing tracking performance. Our method achieves a 29.47\% improvement in Multi-Object Tracking Accuracy (MOTA) on the KITTI validation dataset with the Second detector. Additionally, a refined Kalman filter term reduces localization noise, improving higher-order tracking accuracy (HOTA) by 4.8\%. The online framework, RobMOT, outperforms state-of-the-art methods across multiple detectors, with HOTA improvements of up to 3.92\% on the KITTI testing dataset and 8.7\% on the validation dataset, while achieving low identity switch scores. RobMOT excels in challenging scenarios, tracking distant objects and prolonged occlusions, with a 1.77\% MOTA improvement on the Waymo Open dataset, and operates at a remarkable 3221 FPS on a single CPU, proving its efficiency for real-time multi-object tracking.</p>
+        </div>
+    </div>
+
+    <div class="pub-card">
+        <div class="pub-header">
+            <h3>DFR-FastMOT: Detection Failure Resistant Tracker for Fast Multi-Object Tracking Based on Sensor Fusion (2023)</h3>
+        </div>
+        <div class="pub-meta">
+                        <span class="authors">Mohamed Nagy, Majid Khonji, Jorge Dias, Sajid Javid</span>
+            <span class="venue"> | IEEE International Conference on Robotics and Automation (ICRA 2023)</span>
+        </div>
+        <div class="pub-links">
+            <a href="https://ieeexplore.ieee.org/document/10160328" class="pub-link" target="_blank">📄 Paper</a>
+            <a href="https://youtu.be/CLDxqTojz6o" class="pub-link" target="_blank">🎥 Video</a>
+            <button class="pub-details-btn" onclick="toggleAbstract(this)">▼ Abstract</button>
+        </div>
+        <div class="pub-abstract">
+            <p>Persistent multi-object tracking (MOT) allows autonomous vehicles to navigate safely in highly dynamic environments. One of the well-known challenges in MOT is object occlusion when an object becomes unobservant for subsequent frames. The current MOT methods store objects information, such as trajectories, in internal memory to recover the objects after occlusions. However, they retain short-term memory to save computational time and avoid slowing down the MOT method. As a result, they lose track of objects in some occlusion scenarios, particularly long ones. In this paper, we propose DFR-FastMOT, a light MOT method that uses data from a camera and LiDAR sensors and relies on an algebraic formulation for object association and fusion. The formulation boosts the computational time and permits long-term memory that tackles more occlusion scenarios. Our method shows outstanding tracking performance over recent learning and non-learning benchmarks with about 3% and 4% margin in MOTA, respectively. Also, we conduct extensive experiments that simulate occlusion phenomena by employing detectors with various distortion levels. The proposed solution enables superior performance under various distortion levels in detection over current state-of-art methods. Our framework processes about 7,763 frames in 1.48 seconds, which is seven times faster than recent benchmarks. The framework will be available at https://github.com/MohamedNagyMostafa/DFR-FastMOT.</p>
+        </div>
+    </div>
+
+    <!-- 2020 Publication -->
+    <div class="pub-card">
+        <div class="pub-header">
+            <h3>The 4th Industrial Revolution in Coronavirus Pandemic Era (2020)</h3>
+        </div>
+        <div class="pub-meta">
+                        <span class="authors">Mohamed Nagy, Hagar M. Abbad, Ashraf Darwish, Aboul Ella Hassanien</span>
+            <span class="venue"> | Springer International Publisher</span>
+        </div>
+        <div class="pub-links">
+            <button class="pub-details-btn" onclick="toggleAbstract(this)">▼ Abstract</button>
+        </div>
+        <div class="pub-abstract">
+            <p>Analysis of technological advancements and challenges during the COVID-19 pandemic, focusing on the intersection of healthcare and Industry 4.0 technologies.</p>
+        </div>
+    </div>
+
+    <!-- 2019 Publication -->
+    <div class="pub-card">
+        <div class="pub-header">
+            <h3>A Modified Method for Detecting DDoS Attacks Based on Artificial Neural Networks (2019)</h3>
+        </div>
+        <div class="pub-meta">
+                        <span class="authors">Mohamed Nagy, Moataz A. Mohamed, Mohamed El-Sersy, Khalid S. Aloufi</span>
+            <span class="venue"> | 1st International Conference on Information Technology (IEEE/ITMUSTCONF)</span>
+        </div>
+        <div class="pub-links">
+            <button class="pub-details-btn" onclick="toggleAbstract(this)">▼ Abstract</button>
+        </div>
+        <div class="pub-abstract">
+            <p>Novel neural network architecture for improved detection of distributed denial-of-service attacks in network security systems.</p>
+        </div>
+    </div>
+            </div>
+</section>
+       <!-- Talks Section -->
+        <section id="talks" class="content-section">
+            <div class="section">
+                <h2>🎤 Talks & Presentations</h2>
+                <div class="talks-grid">
+                    <div class="talk-card">
+                        <iframe class="talk-video" src="https://www.youtube.com/embed/piIt7r5eObo"
+                            title="Tackling AI Hallucination and occlusion Challenges in objecttracking" allowfullscreen></iframe>
+                        <div class="talk-content">
+                            <h3>Tackling AI Hallucination and Occlusion Challenges in Object Tracking</h3>
+                            <p>My science pitch in XPANCE 2024 held in Abu Dhani UAE</p>
+                            <div class="talk-links">
+                                <a href="#" class="talk-link" target="_blank">📰 Slides</a>
+                                <a href="#" class="talk-link" target="_blank">📅 Event</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Hobbies Section -->
+        <section id="hobbies" class="content-section">
+            <div class="section">
+                <h2>🎨 Hobbies & Interests</h2>
+                <div class="hobbies-container">
+
+                    <div class="hobby-card">
+                        <div class="hobby-icon">🎻 🎵</div>
+                        <h3>Music</h3>
+                        <p>I have a deep passion for listening to diverse music, from movie soundtracks to stunning orchestral pieces and popular songs. Music has always been a significant part of my life. As a child, I loved to play Piano and imitate the melodies and rhythms I heard. This early fascination with music blossomed as I grew older and took up the Violin. Playing an instrument is a beautiful way to translate words and emotions into melodic expressions.</p>
+                    </div>
+
+                    <div class="hobby-card">
+                        <div class="hobby-icon">🧘</div>
+                        <h3>Meditation & Reflection</h3>
+                        <p>I used to have some time a day for meditation, preferring nature areas where I could hear wind, birds' sounds, and the leaves of trees. I use it for relaxation and reflection.</p>
+                    </div>
+
+                    <div class="hobby-card">
+                        <div class="hobby-icon">♟️</div>
+                        <h3>Strategic Puzzles</h3>
+                        <p>I like to solve puzzles! When I was a kid, I used to play strategic games (Wars), make strategic plans, and anticipate outcomes. </p>
+                    </div>
+
+                    <div class="hobby-card">
+                        <div class="hobby-icon">🏊</div>
+                        <h3>Swimming</h3>
+                        <p>My favorite sport is swimming. I like to spend some time swimming and snorkeling once in a while.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="affiliations" class="content-section">
+    <div class="section">
+        <h2>🏛️ Institutional Affiliations</h2>
+        <div class="institution-grid">
+            <div class="institution-card">
+                <img src="ku.jpg" alt="Khalifa University">
+                <h3>Khalifa University</h3>
+                <p>MSc in Computer Science & Ph.D. Candidate in Electrical & Computer Engineering<br>2021-Present</p>
+            </div>
+            <div class="institution-card">
+                <img src="eth.png" alt="ETH Zurich">
+                <h3>ETH Zurich</h3>
+                <p>Robotics Summer School Participant<br>2023</p>
+            </div>
+            <div class="institution-card">
+                <img src="udacity.png" alt="Udacity">
+                <h3>Udacity</h3>
+                <p>Mentor<br>2020-2024</p>
+            </div>
+            <div class="institution-card">
+                <img src="gdg.jpg" alt="GDG">
+                <h3>Google Developers Group</h3>
+                <p>Machine Learning Speaker<br>2018-2020</p>
+            </div>
+            <div class="institution-card">
+                <img src="one_million.jpeg" alt="one million arab coders">
+                <h3>One Million Arab Coders</h3>
+                <p>Andriod Tutor<br>2018</p>
+            </div>
+            <div class="institution-card">
+                <img src="sansa.png" alt="SANSA">
+                <h3>South African National Space Agency</h3>
+                <p>Research Assistant<br>2018</p>
+            </div>
+             <div class="institution-card">
+                <img src="google.png" alt="Google">
+                <h3>Google</h3>
+                <p>Andriod Development Intern<br>2016</p>
+            </div>
+            <div class="institution-card">
+                <img src="helwan.jpg" alt="Helwan University">
+                <h3>Helwan University</h3>
+                <p>Bachelor's in Mathematics and Computer Science<br>2014-2018</p>
+            </div>
+            <!-- Add more institutions -->
+        </div>
+    </div>
+</section>
+
+        <!-- Awards Section
+        <section id="awards" class="content-section">
+            Awards content from previous version
+        </section>-->
+    </div>
+
+   <script>
+        // Tab switching functionality
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+
+                // Remove active classes
+                document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
+                document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+
+                // Add active classes
+                link.classList.add('active');
+                document.querySelector(targetId).classList.add('active');
+
+                // Smooth scroll to top
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+
+                // Update URL hash
+                history.pushState(null, null, targetId);
+            });
+        });
+
+        // Handle initial hash URL
+        window.addEventListener('load', () => {
+            const hash = window.location.hash;
+            if (hash) {
+                const targetLink = document.querySelector(`a[href="${hash}"]`);
+                if (targetLink) targetLink.click();
+            }
+        });
+
+        function toggleAbstract(btn) {
+            const abstract = btn.closest('.pub-card').querySelector('.pub-abstract');
+            abstract.classList.toggle('expanded');
+            btn.textContent = abstract.classList.contains('expanded') ? '▲ Collapse' : '▼ Abstract';
+        }
+    </script>
+</body>
+</html>
