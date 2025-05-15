@@ -7,7 +7,7 @@
     <link rel="apple-touch-icon" href="profile_pic.jpeg">
     <title>Mohamed Nagy Mostafa</title>
     <style>
-         * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
             line-height: 1.6;
@@ -142,6 +142,44 @@
             padding: 1.5rem;
         }
 
+        /* Updated video placeholder styles */
+        .video-placeholder {
+            position: relative;
+            cursor: pointer;
+            width: 100%;
+            height: 400px;
+            background: #1a1a1a;
+        }
+
+        .video-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 0, 0, 0.8);
+            border: none;
+            color: white;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            transition: transform 0.2s ease;
+        }
+
+        .video-placeholder:hover .play-button {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        /* Video iframe styles */
         .demo-video, .talk-video {
             width: 100%;
             height: 400px;
@@ -267,31 +305,32 @@
             margin-bottom: 1rem;
             color: #2c3e50;
         }
+
         .institution-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-top: 1.5rem;
-}
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
 
-.institution-card {
-    background: white;
-    border-radius: 0.8rem;
-    padding: 1.5rem;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    transition: transform 0.2s ease;
-}
+        .institution-card {
+            background: white;
+            border-radius: 0.8rem;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease;
+        }
 
-.institution-card:hover {
-    transform: translateY(-5px);
-}
+        .institution-card:hover {
+            transform: translateY(-5px);
+        }
 
-.institution-card img {
-    height: 60px;
-    width: auto;
-    margin-bottom: 1rem;
-}
+        .institution-card img {
+            height: 60px;
+            width: auto;
+            margin-bottom: 1rem;
+        }
 
         /* Responsive design */
         @media (max-width: 768px) {
@@ -306,8 +345,15 @@
             nav a { display: block; margin: 0.5rem 0; }
             h1 { font-size: 2rem; }
             h2 { font-size: 1.6rem; }
-        }
 
+            .video-placeholder {
+                height: 250px;
+            }
+
+            .demo-video, .talk-video {
+                height: 250px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -348,140 +394,167 @@
         <!-- Demos Section -->
         <section id="demos" class="content-section active">
             <div class="section">
-        <h2>🚀 Project Demonstrations</h2>
-        <div class="demo-grid">
-             <div class="demo-card">
-                <iframe class="demo-video" src="https://www.youtube.com/embed/rrMHbu_VST0"
-                    title="RobMOT Robust MOT by Observational Noise and State Estimation Drift Mitigation on LiDAR PointCloud" allowfullscreen></iframe>
-                <div class="demo-content">
-                    <h3>RobMOT:Robust Multi-object Tracking by Observational Noise and State Estimation Drift Mitigation on LiDAR PointCloud</h3>
-                    <p>This work addresses limitations in 3D tracking-by-detection methods, focusing on legitimate trajectory identification and reducing state estimation drift in Kalman filters. Traditional threshold-based filtering struggles with distant and occluded objects, leading to false positives. We propose a novel track validity mechanism and multi-stage observational gating process that reduces ghost tracks and enhances tracking performance. This work effectively tracks distant objects and prolonged occlusions. It operates at 3221 FPS on a single CPU for real-time tracking.</p>
-                    <div class="demo-links">
-                        <a href="https://arxiv.org/abs/2405.11536" class="demo-link" target="_blank">
-                             📝 Paper
-                        </a>
-                        <a href="https://www.linkedin.com/posts/mohamed-nagy-7a2a25b9_objecttracking-research-occlusion-activity-7256928740079779840-FzrF?utm_source=share&utm_medium=member_desktop&rcm=ACoAABk_ECoBWUSDdomYU5VWcMldLH4pCMdPETI"
-                           class="demo-link" target="_blank">
-                            📝 Post
-                        </a>
-                        <a href="https://github.com/MohamedNagyMostafa/RobMOT"
-                           class="demo-link" target="_blank">
-                            💻 Code
-                        </a>
+                <h2>🚀 Project Demonstrations</h2>
+                <div class="demo-grid">
+                    <!-- RobMOT Video -->
+                    <div class="demo-card">
+                        <div class="video-placeholder" data-video-id="rrMHbu_VST0">
+                            <img src="https://img.youtube.com/vi/rrMHbu_VST0/maxresdefault.jpg" alt="RobMOT Video Thumbnail">
+                            <button class="play-button">▶</button>
+                        </div>
+                        <div class="demo-content">
+                            <h3>RobMOT: Robust Multi-object Tracking by Observational Noise and State Estimation Drift Mitigation on LiDAR PointCloud</h3>
+                            <p>This work addresses limitations in 3D tracking-by-detection methods, focusing on legitimate trajectory identification and reducing state estimation drift in Kalman filters. Traditional threshold-based filtering struggles with distant and occluded objects, leading to false positives. We propose a novel track validity mechanism and multi-stage observational gating process that reduces ghost tracks and enhances tracking performance. This work effectively tracks distant objects and prolonged occlusions. It operates at 3221 FPS on a single CPU for real-time tracking.</p>
+                            <div class="demo-links">
+                                <a href="https://arxiv.org/abs/2405.11536" class="demo-link" target="_blank">
+                                    📝 Paper
+                                </a>
+                                <a href="https://www.linkedin.com/posts/mohamed-nagy-7a2a25b9_objecttracking-research-occlusion-activity-7256928740079779840-FzrF?utm_source=share&utm_medium=member_desktop&rcm=ACoAABk_ECoBWUSDdomYU5VWcMldLH4pCMdPETI"
+                                class="demo-link" target="_blank">
+                                    📝 Post
+                                </a>
+                                <a href="https://github.com/MohamedNagyMostafa/RobMOT"
+                                class="demo-link" target="_blank">
+                                    💻 Code
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="demo-card">
-                <iframe class="demo-video" src="https://www.youtube.com/embed/Gvggzb4dfSw" 
-                    title="3D Multi-Object Tracking" allowfullscreen></iframe>
-                <div class="demo-content">
-                    <h3>Autonomous Robot Navigation in Rough Terrain</h3>
-                    <p>I participated in a robotics summer school at ETH Zurich, where I collaborated with my team to develop a full-stack robot designed for a Segway platform. Our technological stack encompassed perception, mapping, localization, state estimation, navigation, and trajectory optimization. We focused on a ground robot and successfully enabled it to navigate within a designated area, identify objects on the map, thoroughly explore the surroundings, and safely depart from the location.</p>
-                    <div class="demo-links">
-                        <a href="https://www.linkedin.com/posts/mohamed-nagy-7a2a25b9_duringeth-z%C3%BCrichsummer-school-2023-a-ros-activity-7101527850154901504-WBTa?utm_source=share&utm_medium=member_desktop&rcm=ACoAABk_ECoBWUSDdomYU5VWcMldLH4pCMdPETI" class="demo-link" target="_blank">
-                             📰 Post
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="demo-card">
-                <iframe class="demo-video" src="https://www.youtube.com/embed/bx5OtXj64OI"
-                    title="Visual Motion Multi-Object Tracking Based on Kalman Filter Using Event Camera" allowfullscreen></iframe>
-                <div class="demo-content">
-                    <h3>Visual Motion Multi-Object Tracking Based on Kalman Filter Using Event Camera</h3>
-<p>The primary objective is to monitor multiple targets based on their visual motion captured through an event camera. The Kalman filter has been reformulated and adapted for visual motion estimation. Based on the current observed motion of an object, the proposed Kalman filter predicts the next visual motion state for that object. The results demonstrated its effectiveness for nearby objects, but its performance was less satisfactory with objects at a distance.</p>                </div>
-            </div>
 
-            <div class="demo-card">
-                <iframe class="demo-video" src="https://www.youtube.com/embed/trD3jiZGOAQ" 
-                    title="Odor Diffusion Simulation and Mapping Using Aerial Drone" allowfullscreen></iframe>
-                <div class="demo-content">
-                    <h3>Odor Diffusion Simulation and Mapping Using Aerial Drone</h3>
-                    <p>The goal of this project is to investigate outdoor odor diffusion. Initially, a particle shooter is developed to simulate odor dispersion in the Gazebo environment, with the scattering of particles governed by a predefined diffusion model. Additionally, a custom air monitoring sensor is integrated into an AutoPilot drone to measure particle concentration per cubic meter. Ultimately, the drone employs advanced algorithms to detect sources of odor diffusion within the environment. The implementation is carried out in C++.</p>
-                    <div class="demo-links">
-                        <a href="https://github.com/MohamedNagyMostafa/aerial-odor-diffusion-simulation-slam" class="demo-link" target="_blank">
-                            💻 Code
-                        </a>
-                </div>
-            </div>
-            </div>
+                    <!-- Autonomous Robot Navigation Video -->
+                    <div class="demo-card">
+                        <div class="video-placeholder" data-video-id="Gvggzb4dfSw">
+                            <img src="https://img.youtube.com/vi/Gvggzb4dfSw/maxresdefault.jpg" alt="Autonomous Robot Navigation Thumbnail">
+                            <button class="play-button">▶</button>
+                        </div>
+                        <div class="demo-content">
+                            <h3>Autonomous Robot Navigation in Rough Terrain</h3>
+                            <p>I participated in a robotics summer school at ETH Zurich, where I collaborated with my team to develop a full-stack robot designed for a Segway platform. Our technological stack encompassed perception, mapping, localization, state estimation, navigation, and trajectory optimization. We focused on a ground robot and successfully enabled it to navigate within a designated area, identify objects on the map, thoroughly explore the surroundings, and safely depart from the location.</p>
+                            <div class="demo-links">
+                                <a href="https://www.linkedin.com/posts/mohamed-nagy-7a2a25b9_duringeth-z%C3%BCrichsummer-school-2023-a-ros-activity-7101527850154901504-WBTa?utm_source=share&utm_medium=member_desktop&rcm=ACoAABk_ECoBWUSDdomYU5VWcMldLH4pCMdPETI" class="demo-link" target="_blank">
+                                    📰 Post
+                                </a>
+                            </div>
+                        </div>
+                    </div>
 
-            <div class="demo-card">
-                <iframe class="demo-video" src="https://www.youtube.com/embed/CLDxqTojz6o" 
-                    title="DFR-FastMOT" allowfullscreen></iframe>
-                <div class="demo-content">
-                    <h3>DFR-FastMOT: Multi-Object Association and Tracking Using Sensor Fusion for Autonomous Vehicles</h3>
-                    <p>This is my thesis project focused on multi-object tracking for self-driving cars. The project employs a combination of camera, LiDAR, and IMU sensors to continuously track objects within 2D camera frames and a 3D LiDAR point cloud. The trajectories of the objects are derived using a Kalman Filter, assuming constant acceleration. This project has been developed from the ground up (End-to-End) using C/C++, with a portion submitted to ICRA 2023 under the title DFR-FastMOT framework. This framework offers a non-learning, online multi-object tracking solution that integrates camera and LiDAR sensors, demonstrating superior performance compared to recent state-of-the-art methods (both learning and non-learning). Notably, it can effectively track objects even during prolonged occlusions or detection distortion, and its computational efficiency is seven times greater than that of recently published frameworks.</p>
-                    <div class="demo-links">
-                    <a href="https://ieeexplore.ieee.org/document/10160328" class="demo-link" target="_blank">
-                             📝 Paper
-                        </a>
-                         <a href="https://www.linkedin.com/posts/mohamed-nagy-7a2a25b9_autonomousvehicles-sota-autonomouscars-activity-7000823626237153280-hLIY?utm_source=share&utm_medium=member_desktop&rcm=ACoAABk_ECoBWUSDdomYU5VWcMldLH4pCMdPETI" class="demo-link" target="_blank">
-                             📰 Post
-                        </a>
-                        <a href="https://github.com/MohamedNagyMostafa/DFR-FastMOT" 
-                           class="demo-link" target="_blank">
-                            💻 Code
-                        </a>
+                    <!-- Visual Motion Tracking Video -->
+                    <div class="demo-card">
+                        <div class="video-placeholder" data-video-id="bx5OtXj64OI">
+                            <img src="https://img.youtube.com/vi/bx5OtXj64OI/maxresdefault.jpg" alt="Visual Motion Tracking Thumbnail">
+                            <button class="play-button">▶</button>
+                        </div>
+                        <div class="demo-content">
+                            <h3>Visual Motion Multi-Object Tracking Based on Kalman Filter Using Event Camera</h3>
+                            <p>The primary objective is to monitor multiple targets based on their visual motion captured through an event camera. The Kalman filter has been reformulated and adapted for visual motion estimation. Based on the current observed motion of an object, the proposed Kalman filter predicts the next visual motion state for that object. The results demonstrated its effectiveness for nearby objects, but its performance was less satisfactory with objects at a distance.</p>
+                        </div>
                     </div>
-                </div>
-            </div>
 
-            <div class="demo-card">
-                <iframe class="demo-video" src="https://www.youtube.com/embed/NA5cnxJ4rYw" 
-                    title="Roughness Estimation" allowfullscreen></iframe>
-                <div class="demo-content">
-                    <h3>3D Map Roughness Estimation using LiDAR for Mobile Robots</h3>
-                    <p>In this project, I developed a 3D adjustable grid map for roughness estimation utilizing LiDAR point clouds. The grid consists of small rectangles surrounding the robot, with each rectangle calculating a roughness score based on the point cloud it contains. To accomplish this, I employed the RANSAC algorithm along with the Euclidean distance property. The implementation was done using C++.</p>
-                    <div class="demo-links">
-                        <a href="https://www.linkedin.com/posts/mohamed-nagy-7a2a25b9_autonomouscars-tracking-detection-activity-7002354214672711680-3tCI?utm_source=share&utm_medium=member_desktop&rcm=ACoAABk_ECoBWUSDdomYU5VWcMldLH4pCMdPETI" 
-                           class="demo-link" target="_blank">
-                            📝 Post
-                        </a>
-                        <a href="https://github.com/MohamedNagyMostafa/Roughness" 
-                           class="demo-link" target="_blank">
-                            💻 Code
-                        </a>
+                    <!-- Odor Diffusion Video -->
+                    <div class="demo-card">
+                        <div class="video-placeholder" data-video-id="trD3jiZGOAQ">
+                            <img src="https://img.youtube.com/vi/trD3jiZGOAQ/maxresdefault.jpg" alt="Odor Diffusion Thumbnail">
+                            <button class="play-button">▶</button>
+                        </div>
+                        <div class="demo-content">
+                            <h3>Odor Diffusion Simulation and Mapping Using Aerial Drone</h3>
+                            <p>The goal of this project is to investigate outdoor odor diffusion. Initially, a particle shooter is developed to simulate odor dispersion in the Gazebo environment, with the scattering of particles governed by a predefined diffusion model. Additionally, a custom air monitoring sensor is integrated into an AutoPilot drone to measure particle concentration per cubic meter. Ultimately, the drone employs advanced algorithms to detect sources of odor diffusion within the environment. The implementation is carried out in C++.</p>
+                            <div class="demo-links">
+                                <a href="https://github.com/MohamedNagyMostafa/aerial-odor-diffusion-simulation-slam" class="demo-link" target="_blank">
+                                    💻 Code
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-             <div class="demo-card">
-                <iframe class="demo-video" src="https://www.youtube.com/embed/ZE6P_TZvwTY"
-                    title="3D Drivable Surface Detection and 2D Localization Map Using stereo camera" allowfullscreen></iframe>
-                <div class="demo-content">
-                    <h3>3D Drivable Surface Detection and 2D Localization Map Using stereo camera</h3>
-                    <p>In this project, I employed the Modified UNET model to extract drivable surfaces through semantic segmentation, alongside the RANSAC algorithm to map these surfaces into 3D space using a stereo camera (Zed2) depth map. Additionally, the results of the semantic segmentation were used to identify obstacles on the surface. Finally, I leveraged the camera's pose information to create a 2D map of the mobile robot's trajectory and accurately localize the robot within that map.</p>
-                    <div class="demo-links">
-                        <a href="https://www.linkedin.com/posts/mohamed-nagy-7a2a25b9_segmentation-computervision-perception-activity-6863195535113764864-yJe_?utm_source=share&utm_medium=member_desktop&rcm=ACoAABk_ECoBWUSDdomYU5VWcMldLH4pCMdPETI"
-                           class="demo-link" target="_blank">
-                            📝 Post
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="demo-card">
-                <iframe class="demo-video" src="https://www.youtube.com/embed/rs_arrF417I"
-                    title="Semantic Segmentation|Modified U-Net Model" allowfullscreen></iframe>
-                <div class="demo-content">
-                    <h3>Semantic Segmentation|Modified U-Net Model</h3>
-                    <p>This research project explores the limitations of deep learning architectures in the context of semantic segmentation. I begin by implementing a U-Net model architecture from the ground up and subsequently enhance the architecture in response to the identified performance weaknesses on the Mapillary Vistas dataset. The final architecture incorporates a downsampling and upsampling hierarchy derived from the U-Net model, skip connections from DenseNet, and parallel convolutional layers featuring kernel sizes inspired by the InceptionV3 model.</p>
-                    <div class="demo-links">
-                        <a href="https://www.linkedin.com/feed/update/urn:li:activity:6868635094811205632/"
-                           class="demo-link" target="_blank">
-                            📝 Post
-                        </a>
-                        <a href="https://github.com/MohamedNagyMostafa/
-RoadSceneUnderstanding-ModifiedUNet"
-                           class="demo-link" target="_blank">
-                            💻 Code
-                        </a>
-                    </div>
-                </div>
-            </div>
 
-        </div>
+                    <!-- DFR-FastMOT Video -->
+                    <div class="demo-card">
+                        <div class="video-placeholder" data-video-id="CLDxqTojz6o">
+                            <img src="https://img.youtube.com/vi/CLDxqTojz6o/maxresdefault.jpg" alt="DFR-FastMOT Thumbnail">
+                            <button class="play-button">▶</button>
+                        </div>
+                        <div class="demo-content">
+                            <h3>DFR-FastMOT: Multi-Object Association and Tracking Using Sensor Fusion for Autonomous Vehicles</h3>
+                            <p>This is my thesis project focused on multi-object tracking for self-driving cars. The project employs a combination of camera, LiDAR, and IMU sensors to continuously track objects within 2D camera frames and a 3D LiDAR point cloud. The trajectories of the objects are derived using a Kalman Filter, assuming constant acceleration. This project has been developed from the ground up (End-to-End) using C/C++, with a portion submitted to ICRA 2023 under the title DFR-FastMOT framework.</p>
+                            <div class="demo-links">
+                                <a href="https://ieeexplore.ieee.org/document/10160328" class="demo-link" target="_blank">
+                                    📝 Paper
+                                </a>
+                                <a href="https://www.linkedin.com/posts/mohamed-nagy-7a2a25b9_autonomousvehicles-sota-autonomouscars-activity-7000823626237153280-hLIY?utm_source=share&utm_medium=member_desktop&rcm=ACoAABk_ECoBWUSDdomYU5VWcMldLH4pCMdPETI" class="demo-link" target="_blank">
+                                    📰 Post
+                                </a>
+                                <a href="https://github.com/MohamedNagyMostafa/DFR-FastMOT"
+                                class="demo-link" target="_blank">
+                                    💻 Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Roughness Estimation Video -->
+                    <div class="demo-card">
+                        <div class="video-placeholder" data-video-id="NA5cnxJ4rYw">
+                            <img src="https://img.youtube.com/vi/NA5cnxJ4rYw/maxresdefault.jpg" alt="Roughness Estimation Thumbnail">
+                            <button class="play-button">▶</button>
+                        </div>
+                        <div class="demo-content">
+                            <h3>3D Map Roughness Estimation using LiDAR for Mobile Robots</h3>
+                            <p>In this project, I developed a 3D adjustable grid map for roughness estimation utilizing LiDAR point clouds. The grid consists of small rectangles surrounding the robot, with each rectangle calculating a roughness score based on the point cloud it contains. To accomplish this, I employed the RANSAC algorithm along with the Euclidean distance property. The implementation was done using C++.</p>
+                            <div class="demo-links">
+                                <a href="https://www.linkedin.com/posts/mohamed-nagy-7a2a25b9_autonomouscars-tracking-detection-activity-7002354214672711680-3tCI?utm_source=share&utm_medium=member_desktop&rcm=ACoAABk_ECoBWUSDdomYU5VWcMldLH4pCMdPETI"
+                                class="demo-link" target="_blank">
+                                    📝 Post
+                                </a>
+                                <a href="https://github.com/MohamedNagyMostafa/Roughness"
+                                class="demo-link" target="_blank">
+                                    💻 Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Drivable Surface Detection Video -->
+                    <div class="demo-card">
+                        <div class="video-placeholder" data-video-id="ZE6P_TZvwTY">
+                            <img src="https://img.youtube.com/vi/ZE6P_TZvwTY/maxresdefault.jpg" alt="Drivable Surface Detection Thumbnail">
+                            <button class="play-button">▶</button>
+                        </div>
+                        <div class="demo-content">
+                            <h3>3D Drivable Surface Detection and 2D Localization Map Using stereo camera</h3>
+                            <p>In this project, I employed the Modified UNET model to extract drivable surfaces through semantic segmentation, alongside the RANSAC algorithm to map these surfaces into 3D space using a stereo camera (Zed2) depth map. Additionally, the results of the semantic segmentation were used to identify obstacles on the surface. Finally, I leveraged the camera's pose information to create a 2D map of the mobile robot's trajectory and accurately localize the robot within that map.</p>
+                            <div class="demo-links">
+                                <a href="https://www.linkedin.com/posts/mohamed-nagy-7a2a25b9_segmentation-computervision-perception-activity-6863195535113764864-yJe_?utm_source=share&utm_medium=member_desktop&rcm=ACoAABk_ECoBWUSDdomYU5VWcMldLH4pCMdPETI"
+                                class="demo-link" target="_blank">
+                                    📝 Post
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Semantic Segmentation Video -->
+                    <div class="demo-card">
+                        <div class="video-placeholder" data-video-id="rs_arrF417I">
+                            <img src="https://img.youtube.com/vi/rs_arrF417I/maxresdefault.jpg" alt="Semantic Segmentation Thumbnail">
+                            <button class="play-button">▶</button>
+                        </div>
+                        <div class="demo-content">
+                            <h3>Semantic Segmentation|Modified U-Net Model</h3>
+                            <p>This research project explores the limitations of deep learning architectures in the context of semantic segmentation. I begin by implementing a U-Net model architecture from the ground up and subsequently enhance the architecture in response to the identified performance weaknesses on the Mapillary Vistas dataset. The final architecture incorporates a downsampling and upsampling hierarchy derived from the U-Net model, skip connections from DenseNet, and parallel convolutional layers featuring kernel sizes inspired by the InceptionV3 model.</p>
+                            <div class="demo-links">
+                                <a href="https://www.linkedin.com/feed/update/urn:li:activity:6868635094811205632/"
+                                class="demo-link" target="_blank">
+                                    📝 Post
+                                </a>
+                                <a href="https://github.com/MohamedNagyMostafa/RoadSceneUnderstanding-ModifiedUNet"
+                                class="demo-link" target="_blank">
+                                    💻 Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-    </section>
+        </section>
 
         <section id="publications" class="content-section section">
             <div class="section">
@@ -582,8 +655,11 @@ RoadSceneUnderstanding-ModifiedUNet"
                 <h2>🎤 Talks & Presentations</h2>
                 <div class="talks-grid">
                     <div class="talk-card">
-                        <iframe class="talk-video" src="https://www.youtube.com/embed/piIt7r5eObo"
-                            title="Tackling AI Hallucination and occlusion Challenges in objecttracking" allowfullscreen></iframe>
+                        <div class="video-placeholder" data-video-id="piIt7r5eObo">
+                            <img src="https://img.youtube.com/vi/piIt7r5eObo/maxresdefault.jpg" alt="Tackling AI Hallucination and occlusion Challenges in objecttracking Thumbnail">
+                            <button class="play-button">▶</button>
+                        </div>
+
                         <div class="talk-content">
                             <h3>Tackling AI Hallucination and Occlusion Challenges in Object Tracking</h3>
                             <p>My science pitch in XPANCE 2024 held in Abu Dhani UAE</p>
@@ -597,6 +673,8 @@ RoadSceneUnderstanding-ModifiedUNet"
                 </div>
             </div>
         </section>
+
+        
 
         <!-- Hobbies Section -->
         <section id="hobbies" class="content-section">
@@ -687,7 +765,7 @@ RoadSceneUnderstanding-ModifiedUNet"
         </section>-->
     </div>
 
-   <script>
+  <script>
         // Tab switching functionality
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', (e) => {
@@ -720,6 +798,23 @@ RoadSceneUnderstanding-ModifiedUNet"
                 const targetLink = document.querySelector(`a[href="${hash}"]`);
                 if (targetLink) targetLink.click();
             }
+        });
+
+        // YouTube video lazy loading
+        document.querySelectorAll('.video-placeholder').forEach(placeholder => {
+            placeholder.addEventListener('click', function() {
+                const videoId = this.dataset.videoId;
+                this.innerHTML = `
+                    <iframe
+                        class="demo-video"
+                        src="https://www.youtube.com/embed/${videoId}?autoplay=1"
+                        title="YouTube video player"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                `;
+            });
         });
 
         function toggleAbstract(btn) {
