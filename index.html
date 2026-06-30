@@ -205,16 +205,15 @@
 
     /* Meta text layout & tags */
     .pub-meta {
-        display: flex;
-        flex-direction: row;     
-        flex-wrap: wrap;           
-        align-items: center;       
-        gap: 0.35rem;     
-        font-size: 0.9rem;
-        color: #4a5568;
-        padding-top: 0.2rem;
-        margin-bottom: 1rem;
-    }
+    flex-shrink: 0;
+    width: 110px;              /* Restores a clean, consistent width for the badge column */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;   /* Aligns the badge to the left of its column */
+    justify-content: flex-start;
+    padding-top: 0.2rem;       /* Exactly matches the padding-top of .pub-img-container */
+    margin-bottom: 0;          /* Prevents any weird vertical shifting */
+}
 
     .pub-badge {
         display: inline-block;
