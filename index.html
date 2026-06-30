@@ -11,11 +11,10 @@
     <link rel="apple-touch-icon" href="profile_pic.jpeg">
     <title>Mohamed Nagy Mostafa</title>
     <style>
-        /* Featured Publications */
-/* Image Column Setup */
+     /* Featured Publications Setup */
 .pub-img-container {
     flex-shrink: 0;
-    width: 160px; /* Perfect width for an architecture diagram thumbnail */
+    width: 240px; /* Increased from 160px for readable architecture figures */
     display: flex;
     align-items: flex-start;
     padding-top: 0.2rem;
@@ -26,15 +25,17 @@
     height: auto;
     border-radius: 6px;
     border: 1px solid #e2e8f0;
-    object-fit: cover;
+    object-fit: contain; /* Prevents cropping of important diagram edges */
     box-shadow: 0 2px 4px rgba(0,0,0,0.03);
-    transition: transform 0.2s ease;
+    transition: all 0.2s ease;
+    cursor: zoom-in; /* Tells the user they can click to expand */
 }
 
-/* Zoom effect on hovering over a single item */
+/* Enhanced Zoom effect on hovering over a single item */
 .pub-item:hover .pub-thumb {
-    transform: scale(1.03);
+    transform: scale(1.04);
     border-color: #cbd5e1;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
 /* Layout alignment patches */
@@ -63,7 +64,7 @@
     }
     .pub-img-container {
         width: 100%;
-        max-width: 320px; /* Prevents tiny figures from blowing up full screen on mobile */
+        max-width: 400px; /* Allows a larger image view on mobile screens too */
     }
 }
 
@@ -635,9 +636,10 @@
             
             <!-- Added Image Column -->
             <div class="pub-img-container">
+            <a href="polycepta_main_fig.png" target="_blank" title="Click to view full diagram">
                 <img src="polycepta_main_fig.png" alt="Polycepta Object-Centric Appearance Estimation" class="pub-thumb">
-            </div>
-            
+            </a>
+        </div>
             <div class="pub-main">
                 <h3 class="pub-title">Polycepta: Object-Centric Appearance Estimation for Multi-Object Tracking</h3>
                 <p class="pub-authors"><strong>Mohamed Nagy</strong>, Naoufel Werghi, Jorge Dias, Majid Khonji</p>
@@ -660,9 +662,10 @@
             
             <!-- Added Image Column -->
             <div class="pub-img-container">
-                <img src="image.png" alt="RobMOT Temporal Validation" class="pub-thumb">
-            </div>
-            
+        <a href="image.png" target="_blank" title="Click to view full diagram">
+            <img src="image.png" alt="RobMOT Temporal Validation" class="pub-thumb">
+        </a>
+    </div>
             <div class="pub-main">
                 <h3 class="pub-title">RobMOT: Robust 3D Multi-Object Tracking by Observational Noise and State Estimation Drift Mitigation on LiDAR PointCloud</h3>
                 <p class="pub-authors"><strong>Mohamed Nagy</strong>, Naoufel Werghi, Bilal Hassan, Jorge Dias, Majid Khonji</p>
