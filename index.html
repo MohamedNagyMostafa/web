@@ -12,7 +12,60 @@
     <title>Mohamed Nagy Mostafa</title>
     <style>
         /* Featured Publications */
+/* Image Column Setup */
+.pub-img-container {
+    flex-shrink: 0;
+    width: 160px; /* Perfect width for an architecture diagram thumbnail */
+    display: flex;
+    align-items: flex-start;
+    padding-top: 0.2rem;
+}
 
+.pub-thumb {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+    object-fit: cover;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+    transition: transform 0.2s ease;
+}
+
+/* Zoom effect on hovering over a single item */
+.pub-item:hover .pub-thumb {
+    transform: scale(1.03);
+    border-color: #cbd5e1;
+}
+
+/* Layout alignment patches */
+.pub-item {
+    display: flex;
+    gap: 1.75rem;
+    padding-bottom: 1.75rem;
+    border-bottom: 1px dashed #e2e8f0;
+}
+
+.pub-meta {
+    flex-shrink: 0;
+    width: 100px;
+    padding-top: 0.3rem;
+}
+
+/* Responsive adjustment for tablets and mobile screens */
+@media (max-width: 768px) {
+    .pub-item {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .pub-meta {
+        width: auto;
+        align-self: flex-start;
+    }
+    .pub-img-container {
+        width: 100%;
+        max-width: 320px; /* Prevents tiny figures from blowing up full screen on mobile */
+    }
+}
 
         /* Publications Container */
 #featured-publications {
